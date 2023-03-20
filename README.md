@@ -1,1 +1,0 @@
-# redux-typescript-test

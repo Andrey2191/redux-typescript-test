@@ -1,0 +1,29 @@
+import { Typography } from "antd";
+import { useSelector } from "react-redux";
+import { StoreState } from "../../redux/store";
+import { doneSlice } from "../../redux/slice/done";
+import ColumnLayout from "../ColumnLayout";
+
+export function DoneColumn() {
+  const { done } = useSelector((state: StoreState) => state);
+  const {
+    actions: { completeStatus, remove, add, updateTextShowed },
+  } = doneSlice;
+
+  return (
+    <>
+      <Typography style={{ marginBottom: 20 }}>
+        All done tasks: {done.length}
+      </Typography>
+      <ColumnLayout
+        droppableId="done"
+        labelText="Type 'done' item"
+        completedHandler={completeStatus}
+        removeHandler={remove}
+        addHandler={add}
+        selectorState={done}
+        updateTextShowed={updateTextShowed}
+      />
+    </>
+  );
+}
